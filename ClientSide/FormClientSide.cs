@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -164,24 +166,58 @@ namespace ClientSide
             txtStatus.Text = "Connected";
         }
 
+
         private void btnSend_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            clientRequest = txtRequest.Text;
+            //kt người dùng có chọn option dowload ko
+            if (!btnDownload.Checked)
+            {
+                clientRequest = txtRequest.Text;
 
-            //Thread.Sleep(500);
-            byte[] dataSent = Encoding.ASCII.GetBytes(clientRequest);
-            clientSide.Send(dataSent);
+                //Thread.Sleep(500);
+                byte[] dataSent = Encoding.ASCII.GetBytes(clientRequest);
+                clientSide.Send(dataSent);
 
-            byte[] buffer = new byte[1024];
-            int dataReceivedSize = clientSide.Receive(buffer);
+                byte[] buffer = new byte[1024];
+                int dataReceivedSize = clientSide.Receive(buffer);
 
-            byte[] dataReceived = new byte[dataReceivedSize];
-            Array.Copy(buffer, dataReceived, dataReceivedSize);
+                byte[] dataReceived = new byte[dataReceivedSize];
+                Array.Copy(buffer, dataReceived, dataReceivedSize);
 
-            string response = Encoding.ASCII.GetString(dataReceived);
-            //response = response.Replace("|", "\n\n\n\n");
-            Console.WriteLine(response);
-            txtResponse.Text = response;
+                string response = Encoding.ASCII.GetString(dataReceived);
+                //response = response.Replace("|", "\n\n\n\n");
+                Console.WriteLine(response);
+                txtResponse.Text = response;
+            }
+            else
+            {
+                txtResponse.Text = "";
+                clientRequest = "*"+txtRequest.Text;// thêm cờ vào rồi gửi lên cho server
+                byte[] dataSent = Encoding.ASCII.GetBytes(clientRequest);
+                clientSide.Send(dataSent);
+
+                txtResponse.Text += "It Works and looks for files\r\n";
+                //Nhận dữ liệu từ server
+                byte[] clientData = new byte[600000000];
+                int receiveByteLen = clientSide.Receive(clientData);
+
+                //phần tách dữ liệu theo như thứ tự đã được đặt trước ở server
+                txtResponse.Text += "Receiving file ....\r\n";
+                // lấy chiều dài của tên file
+                int fNameLen = BitConverter.ToInt32(clientData, 0);
+
+                //tiếp theo là lấy tên file
+                string fName = Encoding.ASCII.GetString(clientData, 4, fNameLen);
+
+                //tiến hành tạo tên file trên đường dẫn đích mà người dùng nhập vào
+                BinaryWriter write = new BinaryWriter (File.Open (txtPathDest.Text + "/" + fName ,  FileMode.Append ));
+
+                //Nạo dữ liệu vào file
+                write .Write (clientData , 4+fNameLen , receiveByteLen -4 -fNameLen );
+
+                txtResponse.Text += "Saving file....\r\n";
+                write .Close ();
+            }
         }
 
         private void btnRefresh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -193,6 +229,18 @@ namespace ClientSide
         private void btnExit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             this.Dispose();
+        }
+
+        private void btnDownload_CheckedChanged(object sender, EventArgs e)
+        {
+            if (btnDownload.Checked)
+            {
+                txtPathDest.Visible = true;
+            }
+            else
+            {
+                txtPathDest.Visible = false;
+            }
         }
     }
 }
