@@ -46,7 +46,6 @@ Sáu tính năng phía trên là mình làm thêm để tăng kiến thức củ
             <sub><b>Nguyễn Thành Phong</b></sub>
         </a>
     </td>
-    <tr>
         <td align="center">
         <a href="https://github.com/truong-lv">
             <img src="https://scontent.fsgn2-3.fna.fbcdn.net/v/t1.6435-9/118510743_2729770473932444_4467076797617276250_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=My8IwDFx2FYAX99xFaP&_nc_ht=scontent.fsgn2-3.fna&oh=c73220a6f0746f3f9050b9b1fd2db535&oe=618A6C0A" width="100px;" alt=""/>
