@@ -9,7 +9,7 @@ Client có thể gửi yêu cầu là đường dẫn đến  1 ổ điã hoặc
 
 # [**How to run**](#)
 
-Về cơ bản thầy Lê Ngọc Bảo khá là dễ tính. Một buổi học có 4 tiết thì thầy dạy đến 8-9h là kết thúc buổi học rồi. Đề tài phias trên cũng khá dễ thở. Các bạn chỉ cần tải nó về là có thể chạy được.
+Về cơ bản thầy Lê Ngọc Bảo khá là dễ tính. Một buổi học có 4 tiết thì thầy dạy đến 8-9h là kết thúc buổi học rồi. Đề tài phía trên cũng khá dễ thở. Các bạn chỉ cần tải nó về là có thể chạy được.
 
 Tuy nhiên, phải mở ít nhất là 2 tab nhé. Một tab để server chạy, một tab để client chạy và gửi yêu cầu tới server.
 
