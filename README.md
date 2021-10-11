@@ -15,7 +15,7 @@ Tuy nhiên, phải mở ít nhất là 2 tab nhé. Một tab để server chạy
 
 Bài làm này mình sử dụng giao thức TCP để kết nối giữa server và client nha.
 
-# [**Preminum Features**](#)
+# [**Premium Features**](#)
 
 Phần này là do mình tự làm thêm vào. Tại đề tài quá dễ mà thầy cho một nhóm có 4-5 người làm. Nên mình tự tìm hiểu thêm và tạo thêm cho chương trình một số chức năng khác như sau:
 
