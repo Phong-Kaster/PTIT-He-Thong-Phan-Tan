@@ -36,7 +36,7 @@ Phần này là do mình tự làm thêm vào. Tại đề tài quá dễ mà th
 8. "processor" xem thông tin bộ vi xử lý máy tính
 
 Sáu tính năng phía trên là mình làm thêm để tăng kiến thức của chính mình. Các bạn thấy không bắt buộc phải làm đâu nha.
-# [**Special Thank**](#special-thank)
+# [**Our Team**](#)
  <table>
     <tr>
         <td align="center">
@@ -54,7 +54,7 @@ Sáu tính năng phía trên là mình làm thêm để tăng kiến thức củ
         </a>
     </td>
     <td align="center">
-        <a href="#">
+        <a href="https://github.com/LuuTienPhat">
             <img src="https://scontent.fsgn2-4.fna.fbcdn.net/v/t1.6435-9/44497870_113857869603976_3658666065736499200_n.jpg?_nc_cat=109&ccb=1-5&_nc_sid=174925&_nc_ohc=UtPqOADSXPsAX_sW1ne&_nc_ht=scontent.fsgn2-4.fna&oh=dc527d81829bf985f12d67b465eee066&oe=61881194" width="100px;" alt=""/>
             <br />
             <sub><b>Lưu Tiến Phát</b></sub>
