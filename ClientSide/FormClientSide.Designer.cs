@@ -52,6 +52,16 @@ namespace ClientSide
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.btnDownload = new DevExpress.XtraEditors.CheckButton();
             this.txtPathDest = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBoxExtensions = new System.Windows.Forms.TextBox();
+            this.checkBoxAll = new System.Windows.Forms.CheckBox();
+            this.checkBoxSound = new System.Windows.Forms.CheckBox();
+            this.checkBoxText = new System.Windows.Forms.CheckBox();
+            this.checkBoxImage = new System.Windows.Forms.CheckBox();
+            this.checkBoxFolder = new System.Windows.Forms.CheckBox();
+            this.checkBoxVideo = new System.Windows.Forms.CheckBox();
+            this.checkBoxCompressed = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,60 +69,63 @@ namespace ClientSide
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(374, 76);
+            this.label1.Location = new System.Drawing.Point(321, 62);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(104, 29);
+            this.label1.Size = new System.Drawing.Size(82, 23);
             this.label1.TabIndex = 0;
             this.label1.Text = "CLIENT";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(83, 193);
+            this.label2.Location = new System.Drawing.Point(71, 157);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(124, 17);
+            this.label2.Size = new System.Drawing.Size(98, 13);
             this.label2.TabIndex = 1;
             this.label2.Text = "Enter your request";
             // 
             // txtRequest
             // 
-            this.txtRequest.Location = new System.Drawing.Point(244, 187);
+            this.txtRequest.Location = new System.Drawing.Point(209, 152);
+            this.txtRequest.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtRequest.Name = "txtRequest";
-            this.txtRequest.Size = new System.Drawing.Size(342, 23);
+            this.txtRequest.Size = new System.Drawing.Size(294, 21);
             this.txtRequest.TabIndex = 2;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(83, 280);
+            this.label3.Location = new System.Drawing.Point(71, 228);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(67, 17);
+            this.label3.Size = new System.Drawing.Size(54, 13);
             this.label3.TabIndex = 4;
             this.label3.Text = "Response";
             // 
             // txtResponse
             // 
-            this.txtResponse.Location = new System.Drawing.Point(244, 280);
+            this.txtResponse.Location = new System.Drawing.Point(209, 228);
+            this.txtResponse.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtResponse.Multiline = true;
             this.txtResponse.Name = "txtResponse";
-            this.txtResponse.Size = new System.Drawing.Size(342, 274);
+            this.txtResponse.Size = new System.Drawing.Size(294, 223);
             this.txtResponse.TabIndex = 5;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(83, 143);
+            this.label4.Location = new System.Drawing.Point(71, 116);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(47, 17);
+            this.label4.Size = new System.Drawing.Size(38, 13);
             this.label4.TabIndex = 8;
             this.label4.Text = "Status";
             // 
             // txtStatus
             // 
-            this.txtStatus.Location = new System.Drawing.Point(244, 137);
+            this.txtStatus.Location = new System.Drawing.Point(209, 111);
+            this.txtStatus.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtStatus.Name = "txtStatus";
             this.txtStatus.ReadOnly = true;
-            this.txtStatus.Size = new System.Drawing.Size(122, 23);
+            this.txtStatus.Size = new System.Drawing.Size(105, 21);
             this.txtStatus.TabIndex = 9;
             this.txtStatus.Text = "Disconnect";
             this.txtStatus.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -122,9 +135,10 @@ namespace ClientSide
             this.button5.BackColor = System.Drawing.Color.Blue;
             this.button5.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button5.ForeColor = System.Drawing.Color.White;
-            this.button5.Location = new System.Drawing.Point(646, 179);
+            this.button5.Location = new System.Drawing.Point(554, 145);
+            this.button5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(139, 35);
+            this.button5.Size = new System.Drawing.Size(119, 28);
             this.button5.TabIndex = 11;
             this.button5.Text = "Select Folder";
             this.button5.UseVisualStyleBackColor = false;
@@ -215,31 +229,35 @@ namespace ClientSide
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(871, 30);
+            this.barDockControlTop.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.barDockControlTop.Size = new System.Drawing.Size(747, 24);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 546);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 440);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(871, 20);
+            this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.barDockControlBottom.Size = new System.Drawing.Size(747, 20);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 30);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 24);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 516);
+            this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 416);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(871, 30);
+            this.barDockControlRight.Location = new System.Drawing.Point(747, 24);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 516);
+            this.barDockControlRight.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 416);
             // 
             // btnDownload
             // 
@@ -247,26 +265,158 @@ namespace ClientSide
             this.btnDownload.Appearance.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDownload.Appearance.Options.UseBackColor = true;
             this.btnDownload.Appearance.Options.UseFont = true;
-            this.btnDownload.Location = new System.Drawing.Point(244, 216);
+            this.btnDownload.Location = new System.Drawing.Point(209, 176);
+            this.btnDownload.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDownload.Name = "btnDownload";
-            this.btnDownload.Size = new System.Drawing.Size(95, 29);
+            this.btnDownload.Size = new System.Drawing.Size(81, 24);
             this.btnDownload.TabIndex = 16;
             this.btnDownload.Text = "Download";
             this.btnDownload.CheckedChanged += new System.EventHandler(this.btnDownload_CheckedChanged);
             // 
             // txtPathDest
             // 
-            this.txtPathDest.Location = new System.Drawing.Point(345, 220);
+            this.txtPathDest.Location = new System.Drawing.Point(296, 179);
+            this.txtPathDest.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtPathDest.Name = "txtPathDest";
-            this.txtPathDest.Size = new System.Drawing.Size(241, 23);
+            this.txtPathDest.Size = new System.Drawing.Size(207, 21);
             this.txtPathDest.TabIndex = 17;
             this.txtPathDest.Visible = false;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(551, 200);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(154, 13);
+            this.label5.TabIndex = 22;
+            this.label5.Text = "Select file types that you want";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(552, 388);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(183, 13);
+            this.label6.TabIndex = 23;
+            this.label6.Text = "Or enter extensions, separate by \";\"";
+            // 
+            // textBoxExtensions
+            // 
+            this.textBoxExtensions.Location = new System.Drawing.Point(554, 414);
+            this.textBoxExtensions.Name = "textBoxExtensions";
+            this.textBoxExtensions.Size = new System.Drawing.Size(180, 21);
+            this.textBoxExtensions.TabIndex = 24;
+            // 
+            // checkBoxAll
+            // 
+            this.checkBoxAll.AutoSize = true;
+            this.checkBoxAll.Checked = true;
+            this.checkBoxAll.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxAll.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxAll.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.checkBoxAll.Location = new System.Drawing.Point(555, 223);
+            this.checkBoxAll.Name = "checkBoxAll";
+            this.checkBoxAll.Size = new System.Drawing.Size(142, 18);
+            this.checkBoxAll.TabIndex = 25;
+            this.checkBoxAll.Text = "All files and folders";
+            this.checkBoxAll.UseVisualStyleBackColor = true;
+            this.checkBoxAll.CheckedChanged += new System.EventHandler(this.checkBoxAll_CheckedChanged);
+            // 
+            // checkBoxSound
+            // 
+            this.checkBoxSound.AutoSize = true;
+            this.checkBoxSound.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxSound.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.checkBoxSound.Location = new System.Drawing.Point(554, 246);
+            this.checkBoxSound.Name = "checkBoxSound";
+            this.checkBoxSound.Size = new System.Drawing.Size(94, 18);
+            this.checkBoxSound.TabIndex = 26;
+            this.checkBoxSound.Text = "Sound files";
+            this.checkBoxSound.UseVisualStyleBackColor = true;
+            this.checkBoxSound.CheckedChanged += new System.EventHandler(this.checkBoxSound_CheckedChanged);
+            // 
+            // checkBoxText
+            // 
+            this.checkBoxText.AutoSize = true;
+            this.checkBoxText.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxText.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.checkBoxText.Location = new System.Drawing.Point(554, 292);
+            this.checkBoxText.Name = "checkBoxText";
+            this.checkBoxText.Size = new System.Drawing.Size(81, 18);
+            this.checkBoxText.TabIndex = 27;
+            this.checkBoxText.Text = "Text files";
+            this.checkBoxText.UseVisualStyleBackColor = true;
+            this.checkBoxText.CheckedChanged += new System.EventHandler(this.checkBoxText_CheckedChanged);
+            // 
+            // checkBoxImage
+            // 
+            this.checkBoxImage.AutoSize = true;
+            this.checkBoxImage.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxImage.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.checkBoxImage.Location = new System.Drawing.Point(554, 315);
+            this.checkBoxImage.Name = "checkBoxImage";
+            this.checkBoxImage.Size = new System.Drawing.Size(92, 18);
+            this.checkBoxImage.TabIndex = 28;
+            this.checkBoxImage.Text = "Image files";
+            this.checkBoxImage.UseVisualStyleBackColor = true;
+            this.checkBoxImage.CheckedChanged += new System.EventHandler(this.checkBoxImage_CheckedChanged);
+            // 
+            // checkBoxFolder
+            // 
+            this.checkBoxFolder.AutoSize = true;
+            this.checkBoxFolder.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxFolder.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.checkBoxFolder.Location = new System.Drawing.Point(555, 363);
+            this.checkBoxFolder.Name = "checkBoxFolder";
+            this.checkBoxFolder.Size = new System.Drawing.Size(69, 18);
+            this.checkBoxFolder.TabIndex = 29;
+            this.checkBoxFolder.Text = "Folders";
+            this.checkBoxFolder.UseVisualStyleBackColor = true;
+            this.checkBoxFolder.CheckedChanged += new System.EventHandler(this.checkBoxFolder_CheckedChanged);
+            // 
+            // checkBoxVideo
+            // 
+            this.checkBoxVideo.AutoSize = true;
+            this.checkBoxVideo.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxVideo.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.checkBoxVideo.Location = new System.Drawing.Point(554, 269);
+            this.checkBoxVideo.Name = "checkBoxVideo";
+            this.checkBoxVideo.Size = new System.Drawing.Size(88, 18);
+            this.checkBoxVideo.TabIndex = 30;
+            this.checkBoxVideo.Text = "Video files";
+            this.checkBoxVideo.UseVisualStyleBackColor = true;
+            this.checkBoxVideo.CheckedChanged += new System.EventHandler(this.checkBoxVideo_CheckedChanged);
+            // 
+            // checkBoxCompressed
+            // 
+            this.checkBoxCompressed.AutoSize = true;
+            this.checkBoxCompressed.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxCompressed.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.checkBoxCompressed.Location = new System.Drawing.Point(554, 339);
+            this.checkBoxCompressed.Name = "checkBoxCompressed";
+            this.checkBoxCompressed.Size = new System.Drawing.Size(128, 18);
+            this.checkBoxCompressed.TabIndex = 35;
+            this.checkBoxCompressed.Text = "Compressed files";
+            this.checkBoxCompressed.UseVisualStyleBackColor = true;
+            this.checkBoxCompressed.CheckedChanged += new System.EventHandler(this.checkBoxCompressed_CheckedChanged);
+            // 
             // FormClient
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(871, 566);
+            this.ClientSize = new System.Drawing.Size(747, 460);
+            this.Controls.Add(this.checkBoxCompressed);
+            this.Controls.Add(this.checkBoxVideo);
+            this.Controls.Add(this.checkBoxFolder);
+            this.Controls.Add(this.checkBoxImage);
+            this.Controls.Add(this.checkBoxText);
+            this.Controls.Add(this.checkBoxSound);
+            this.Controls.Add(this.checkBoxAll);
+            this.Controls.Add(this.textBoxExtensions);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.txtPathDest);
             this.Controls.Add(this.btnDownload);
             this.Controls.Add(this.button5);
@@ -282,7 +432,6 @@ namespace ClientSide
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
             this.IconOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("FormClient.IconOptions.SvgImage")));
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FormClient";
             this.Text = "CLIENT";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -315,6 +464,16 @@ namespace ClientSide
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
         private DevExpress.XtraEditors.CheckButton btnDownload;
         private System.Windows.Forms.TextBox txtPathDest;
+        private System.Windows.Forms.CheckBox checkBoxFolder;
+        private System.Windows.Forms.CheckBox checkBoxImage;
+        private System.Windows.Forms.CheckBox checkBoxText;
+        private System.Windows.Forms.CheckBox checkBoxSound;
+        private System.Windows.Forms.CheckBox checkBoxAll;
+        private System.Windows.Forms.TextBox textBoxExtensions;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.CheckBox checkBoxVideo;
+        private System.Windows.Forms.CheckBox checkBoxCompressed;
     }
 }
 

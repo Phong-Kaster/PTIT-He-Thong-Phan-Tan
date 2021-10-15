@@ -28,11 +28,6 @@ namespace ServerSide
         private static string pattern = @"^(?:[a - zA - Z]\:|\\\\[\w\.] +\\[\w.$]+)\\(?:[\w]+\\)*\w([\w.])+$";
         private static Regex folderRegex = new Regex(pattern);
 
-
-
-        /**
-         * 
-         */
         private string retrieveFileNDirectory(string path)
         {
             string result = "";
@@ -60,7 +55,168 @@ namespace ServerSide
             return result;
         }
 
+        
+        /*******************************PHẦN CỦA QUỐC TUẤN********************************/
 
+        /**********************************************************************************
+         * Step 1: Khởi tạo các list string chứa extension của loại file
+         * Step 2: Hàm isEndWith để kiểm tra đường dẫn file có đuôi cần tìm hay không
+         * Step 3: Hàm retrieveFiltered_FileNDirectory kết hợp retrieveFileNDirectory và isEndWith để cho kết quả đã lọc
+         * 
+         **********************************************************************************/
+
+        /*Step 1*/
+        private static List<string> soundExtensions = new List<string>(new string[] { "mp3", "m4p", "m4a", "flac" });
+        private static List<string> videoExtensions = new List<string>(new string[] { "mp4", "mkv", "webm", "flv" });
+        private static List<string> textExtensions = new List<string>(new string[] { "txt", "doc", "docx" });
+        private static List<string> imageExtensions = new List<string>(new string[] { "jpg", "jpeg", "png", "bmp" });
+        private static List<string> compressedExtensions = new List<string>(new string[] { "7z", "rar", "zip" });
+
+        /*Step 2*/
+        public bool isEndWith(string fileType, string path)
+        {
+            switch (fileType)
+            {
+                case "sound":
+                    if (soundExtensions.Contains(path.Substring(path.LastIndexOf(".") + 1).ToLower()))
+                    {
+                        return true;
+                    }
+                    break;
+                case "video":
+                    if (videoExtensions.Contains(path.Substring(path.LastIndexOf(".") + 1).ToLower()))
+                    {
+                        return true;
+                    }
+                    break;
+                case "text":
+                    if (textExtensions.Contains(path.Substring(path.LastIndexOf(".") + 1).ToLower()))
+                    {
+                        return true;
+                    }
+                    break;
+                case "image":
+                    if (imageExtensions.Contains(path.Substring(path.LastIndexOf(".") + 1).ToLower()))
+                    {
+                        return true;
+                    }
+                    break;
+                case "compressed":
+                    if (compressedExtensions.Contains(path.Substring(path.LastIndexOf(".") + 1).ToLower()))
+                    {
+                        return true;
+                    }
+                    break;
+                case "all":
+                    return true;
+                    break;
+            }
+            return false;
+        }
+
+
+        /*******************************PHẦN CỦA QUỐC TUẤN********************************/
+        /**********************************************************************************
+         * @path = đường dẫn thư mục gửi từ client
+         * result = chứa kết quả trả về cuối cùng
+         * fileResult = chứa tên các tệp tin
+         * directoryResult = chứa tên các thư mục
+         * files = mảng chứa tên tệp tin lấy từ hệ thống
+         * directories = mảng chứa tên thư mục lấy từ hệ thống
+         * 
+         * Step 1: khai bao bien
+         * Step 2: duyệt vòng lặp lấy tên các tệp tin bỏ vào fileReusult
+         *  + mảng pathAndTypes chứa sẵn thứ tự các đuôi. Ví dụ [ 'jpg', 'mp3', 'txt',....]
+         *  + nếu isEndWith trả về true tức là loại file đó nằm tron danh sách được hỗ trợ, những đuôi  
+         * file lạ kiểu 7zip, exez, .. sẽ không được lấy vào
+         * Step 3: nếu yêu cầu là folder hoặc all thì lấy hết
+         * Step 4: trả kết quả về
+         **********************************************************************************/
+        private string retrieveFiltered_FileNDirectory(string path, string[] pathAndTypes)
+        {
+            /*Step 1*/
+            Console.WriteLine("retrieve filtered is running");
+            string result = "";
+            string fileResult = "";
+            string directoryResult = "";
+            string[] files = Directory.GetFiles(path);
+            string[] directories = Directory.GetDirectories(path);
+
+
+
+            /*Step 2*/
+            foreach (string element in files)
+            {
+                for (int j = 2; j < pathAndTypes.Length; j++)
+                {
+                    if (isEndWith(pathAndTypes[j], Path.GetFileName(element)))
+                    {
+                        fileResult = fileResult + "\r\n" + Path.GetFileName(element);
+
+                    }
+                }
+                Console.WriteLine(element);
+            }
+
+
+
+            /*Step 3*/
+            if (pathAndTypes[2] == "folder" || pathAndTypes[2] == "all")
+            {
+                foreach (string element in directories)
+                {
+                    directoryResult = directoryResult + "\r\n" + Path.GetFileName(element);
+                    Console.WriteLine(element);
+                }
+            }
+
+
+            /*Step 4*/
+            result = fileResult + "\r\n" + directoryResult;
+            return result;
+        }
+
+
+        /**********************************************************************************
+         * tương tự như trên nhưng duyệt cả LIST để lấy hết file được hỗ trợ 
+         * trong list phía trên
+         **********************************************************************************/
+        public bool isEndWith(List<string> extensions, string path)
+        {
+            if (extensions.Contains(path.Substring(path.LastIndexOf(".") + 1).ToLower()))
+            {
+                return true;
+            }
+            return false;
+        }
+        private string retrieveFiltered_FileNDirectory(string path, List<string> extensions)
+        {
+            Console.WriteLine("retrieve exfiltered is running");
+            string result = "";
+            string fileResult = "";
+            string directoryResult = "";
+            string[] files = Directory.GetFiles(path);
+            string[] directories = Directory.GetDirectories(path);
+
+
+            foreach (string element in files)
+            {
+                if (isEndWith(extensions, Path.GetFileName(element)))
+                {
+                    fileResult = fileResult + "\r\n" + Path.GetFileName(element);
+
+                }
+                Console.WriteLine(element);
+            }
+            /* foreach (string element in directories)
+             {
+                 directoryResult = directoryResult + "\r\n" + Path.GetFileName(element);
+                 Console.WriteLine(element);
+             }*/
+            result = fileResult + "\r\n" + directoryResult;
+            return result;
+        }
+        /*------------------------------------------------------------------------------*/
 
         /**************************************************************
          * Ham nay nhan dien yeu cau(request) va tra ve phan hoi(response) tuong
@@ -78,6 +234,13 @@ namespace ServerSide
         private string returnResponse(string request)
         {
             string response = "Not Available";
+
+            /*-----------------Tuấn thêm vào-------------
+             * phân tách request từ client
+             */
+            string[] pathAndTypes = request.Split('*');
+            /*-------------------------------------------*/
+
             request = request.ToLower();
 
             if (request == "time") response = "It is " + DateTime.Now.ToLongTimeString();
@@ -136,6 +299,17 @@ namespace ServerSide
                 response = getProcessorInfo();
             }
 
+            /*TUÁN BỔ SUNG*/
+            //kiểm tra lọc theo loại hay theo đuôi file
+            
+            else if (pathAndTypes[0] == "filtered")
+            {
+                response = retrieveFiltered_FileNDirectory(pathAndTypes[1], pathAndTypes);
+            }
+            else if (pathAndTypes[0] == "exFiltered")
+            {
+                response = retrieveFiltered_FileNDirectory(pathAndTypes[1], new List<string>(pathAndTypes[2].Split(';')));
+            }
 
             return response;
         }

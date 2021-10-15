@@ -172,22 +172,32 @@ namespace ClientSide
             //kt người dùng có chọn option dowload ko
             if (!btnDownload.Checked)
             {
-                clientRequest = txtRequest.Text;
+                /*Tuấn thêm vào*/
+                if (!checkBoxAll.Checked || textBoxExtensions.Text.Trim() != "")
+                {
+                    sendRequestWithFilesTypesOptions();
+                }
+                /**/
+                else
+                {
+                    clientRequest = txtRequest.Text;
 
-                //Thread.Sleep(500);
-                byte[] dataSent = Encoding.ASCII.GetBytes(clientRequest);
-                clientSide.Send(dataSent);
+                    //Thread.Sleep(500);
+                    byte[] dataSent = Encoding.ASCII.GetBytes(clientRequest);
+                    clientSide.Send(dataSent);
 
-                byte[] buffer = new byte[1024];
-                int dataReceivedSize = clientSide.Receive(buffer);
+                    byte[] buffer = new byte[1024];
+                    int dataReceivedSize = clientSide.Receive(buffer);
 
-                byte[] dataReceived = new byte[dataReceivedSize];
-                Array.Copy(buffer, dataReceived, dataReceivedSize);
+                    byte[] dataReceived = new byte[dataReceivedSize];
+                    Array.Copy(buffer, dataReceived, dataReceivedSize);
 
-                string response = Encoding.ASCII.GetString(dataReceived);
-                //response = response.Replace("|", "\n\n\n\n");
-                Console.WriteLine(response);
-                txtResponse.Text = response;
+                    string response = Encoding.ASCII.GetString(dataReceived);
+                    //response = response.Replace("|", "\n\n\n\n");
+                    Console.WriteLine(response);
+                    txtResponse.Text = response;
+                }
+                
             }
             else
             {
@@ -220,6 +230,70 @@ namespace ClientSide
             }
         }
 
+        /* ---------------------- Tuấn -----------------------------------
+         */
+        private void sendRequestWithFilesTypesOptions()
+        {
+            string requestWithFileTypeFilter = "";
+            if (textBoxExtensions.Text != "")
+            {
+                requestWithFileTypeFilter = "exFiltered*" + txtRequest.Text + "*" + textBoxExtensions.Text.Trim();
+            }
+            else
+            {
+                requestWithFileTypeFilter = "filtered*" + txtRequest.Text;
+                if (checkBoxAll.Checked)
+                {
+                    requestWithFileTypeFilter = requestWithFileTypeFilter + "*" + "all";
+                }
+                else
+                {
+                    if (checkBoxFolder.Checked)
+                    {
+                        requestWithFileTypeFilter = requestWithFileTypeFilter + "*" + "folder";
+
+                    }
+
+                    if (checkBoxSound.Checked)
+                    {
+                        requestWithFileTypeFilter = requestWithFileTypeFilter + "*" + "sound";
+                    }
+                    if (checkBoxVideo.Checked)
+                    {
+                        requestWithFileTypeFilter = requestWithFileTypeFilter + "*" + "video";
+                    }
+                    if (checkBoxText.Checked)
+                    {
+                        requestWithFileTypeFilter = requestWithFileTypeFilter + "*" + "text";
+                    }
+                    if (checkBoxImage.Checked)
+                    {
+                        requestWithFileTypeFilter = requestWithFileTypeFilter + "*" + "image";
+                    }
+                    if (checkBoxCompressed.Checked)
+                    {
+                        requestWithFileTypeFilter = requestWithFileTypeFilter + "*" + "compressed";
+                    }
+                }
+            }
+
+            /**/
+
+            byte[] dataSent = Encoding.ASCII.GetBytes(requestWithFileTypeFilter);
+            clientSide.Send(dataSent);
+
+            byte[] buffer = new byte[1024];
+            int dataReceivedSize = clientSide.Receive(buffer);
+
+            byte[] dataReceived = new byte[dataReceivedSize];
+            Array.Copy(buffer, dataReceived, dataReceivedSize);
+
+            string response = Encoding.ASCII.GetString(dataReceived);
+            //response = response.Replace("|", "\n\n\n\n");
+            Console.WriteLine(response);
+            txtResponse.Text = response;
+        }
+        /**/
         private void btnRefresh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             this.txtRequest.Text = "";
@@ -240,6 +314,68 @@ namespace ClientSide
             else
             {
                 txtPathDest.Visible = false;
+            }
+        }
+
+        /* ------------------ Tuấn ----------------------*/
+        private void checkBoxAll_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxAll.Checked)
+            {
+                checkBoxFolder.Checked = false;
+                checkBoxText.Checked = false;
+                checkBoxSound.Checked = false;
+                checkBoxVideo.Checked = false;
+                checkBoxImage.Checked = false;
+                checkBoxCompressed.Checked = false;
+            }
+        }
+
+        private void checkBoxSound_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxSound.Checked)
+            {
+                checkBoxAll.Checked = false;
+            }
+        }
+
+        private void checkBoxVideo_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxVideo.Checked)
+            {
+                checkBoxAll.Checked = false;
+            }
+        }
+
+        private void checkBoxText_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxText.Checked)
+            {
+                checkBoxAll.Checked = false;
+            }
+        }
+
+        private void checkBoxFolder_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxFolder.Checked)
+            {
+                checkBoxAll.Checked = false;
+            }
+        }
+
+        private void checkBoxImage_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxImage.Checked)
+            {
+                checkBoxAll.Checked = false;
+            }
+        }
+
+        private void checkBoxCompressed_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxCompressed.Checked)
+            {
+                checkBoxAll.Checked = false;
             }
         }
     }
