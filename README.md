@@ -35,6 +35,8 @@ Phần này là do mình tự làm thêm vào. Tại đề tài quá dễ mà th
 
 8. "processor" xem thông tin bộ vi xử lý máy tính
 
+9. lọc tệp tin theo loại: sound, text, image, zip,....
+
 Sáu tính năng phía trên là mình làm thêm để tăng kiến thức của chính mình. Các bạn thấy không bắt buộc phải làm đâu nha.
 # [**Our Team**](#)
  <table>
